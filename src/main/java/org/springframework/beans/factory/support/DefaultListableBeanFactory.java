@@ -3,13 +3,15 @@ package org.springframework.beans.factory.support;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements
-        ConfigurableListableBeanFactory,BeanDefinitionRegistry{
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
+        implements ConfigurableListableBeanFactory, BeanDefinitionRegistry {
+
     private Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 
     @Override
@@ -26,6 +28,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
         return beanDefinition;
     }
+
     @Override
     public boolean containsBeanDefinition(String beanName) {
         return beanDefinitionMap.containsKey(beanName);
@@ -49,4 +52,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
         Set<String> beanNames = beanDefinitionMap.keySet();
         return beanNames.toArray(new String[beanNames.size()]);
     }
+
+    @Override
+    public void preInstantiateSingletons() throws BeansException {
+        beanDefinitionMap.keySet().forEach(this::getBean);
+    }
+
+
 }
