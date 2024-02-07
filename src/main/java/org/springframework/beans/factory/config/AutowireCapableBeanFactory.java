@@ -4,6 +4,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 
 public interface AutowireCapableBeanFactory extends BeanFactory {
+
     /**
      * 执行BeanPostProcessors的postProcessBeforeInitialization方法
      *
@@ -25,5 +26,4 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
      */
     Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName)
             throws BeansException;
-
 }

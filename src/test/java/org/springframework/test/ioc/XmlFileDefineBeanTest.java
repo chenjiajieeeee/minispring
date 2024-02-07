@@ -9,7 +9,6 @@ import org.springframework.test.ioc.bean.Person;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class XmlFileDefineBeanTest {
-
     @Test
     public void testXmlFile() throws Exception {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
@@ -24,5 +23,6 @@ public class XmlFileDefineBeanTest {
         Car car = (Car) beanFactory.getBean("car");
         System.out.println(car);
         assertThat(car.getBrand()).isEqualTo("porsche");
+
     }
 }
