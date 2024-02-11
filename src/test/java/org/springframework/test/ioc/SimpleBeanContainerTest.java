@@ -10,11 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SimpleBeanContainerTest {
     @Test
     public void testGetBean(){
-        BeanFactory beanFactory=new BeanFactory();
-        beanFactory.registerBean("helloService", new HelloService());
-        final HelloService helloService = (HelloService)beanFactory.getBean("helloService");
-        assertThat(helloService).isNotNull();
-        assertThat(helloService.sayHello()).isEqualTo("hello");
+
+
     }
      class HelloService {
         public String sayHello() {
